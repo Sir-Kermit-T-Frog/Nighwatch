@@ -45,6 +45,8 @@ bffL_path = os.path.join(script_dir, "ForcefieldLeftDoor-1.png.png")
 bffR_path = os.path.join(script_dir, "ForcefieldRightDoor-1.png.png")
 lights_button_path = os.path.join(script_dir, "LightsButton-1.png.png")
 menu_image_path = os.path.join(script_dir, "MainMenuBG-1.png.png")
+instructions_path = os.path.join(script_dir, "Instructions.png")
+borg_cube_path = os.path.join(script_dir, "BorgCube-1.png.png")
 
 # Audio & Jumpscare Paths
 rwsfx_path = os.path.join(script_dir, "Robot Walking Sound Effect.mp3")
@@ -171,6 +173,8 @@ try:
     menu_image = py.image.load(menu_image_path).convert_alpha()
     lightsiwtch_sfx = py.mixer.Sound(lightsiwtch_sfx_path)
     forcefield_sfx = py.mixer.Sound(forcefield_sfx_path)
+    instructions = py.image.load(instructions_path).convert_alpha()
+    borg_cube = py.image.load(borg_cube_path).convert_alpha()
     
     # Load and Slice Jumpscare Animation
     jumpscare_anim_sheet = py.image.load(jumpscare_anim_path).convert_alpha()
@@ -568,7 +572,9 @@ while running:
     # 3. DRAWING
     if gamestate == "menu":
         screen.blit(menu_image, (0,0))
+        screen_shader.set_alpha(170)
         screen.blit(screen_shader, (0,0))
+        screen.blit(instructions, (400,600))
         title = ui_font.render("NIGHT WATCH", True, (255,255,255))
         screen.blit(title, (650,150))
         for i, option in enumerate(menu_options):
@@ -637,6 +643,7 @@ while running:
                         screen.blit(sprite_to_draw, (390 + bg_x, 350))
                     elif borg.current_room == "RIGHT_DOOR" and lights_right_on and lights_working:
                         screen.blit(sprite_to_draw, (2000 + bg_x, 350))
+        screen.blit(borg_cube, (750,750))
         screen.blit(active_bg, (bg_x, 0)) 
     else:
         screen.fill((0, 0, 0))
