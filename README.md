@@ -1,5 +1,5 @@
 Hello! This is my first time uploading to github, so I have no idea how this works
-Ummm, Here is my fnaf like game but startrek themed
+This is a fnaf like game but startrek themed
 arrow keys are used to navigate main menu
 press enter to select your difficulty
 
